@@ -1,7 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
   margin: 0;
+  -webkit-font-smoothing: antialiased;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -15,12 +20,49 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+
+/* IOS 16 */
+label {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+input:checked + .prev-typography {
+  visibility: hidden;
+}
+
+input:checked + div .overlay-filler {
+  visibility: visible;
+  opacity: 1;
+  background: linear-gradient(135deg,#0D1387,#867AF6);
+  transition: opacity 660ms cubic-bezier(0.66, 0, 0.01, 1),visibility linear 0s;
+}
+
+.typography {
+  transform: translateY(-20px);
+}
+
+input:checked + div .overlay-filler div .typography {
+  transform: translateY(0);
+  visibility: visible;
+  color: white;
+  opacity: 1;
+  transition: all 660ms cubic-bezier(0.66, 0, 0.2, 1) 0s;
+  transition-delay: .66s;
+}
+
+input:checked + .overlay label div span {
+  rotate: 45deg;
+  transition: all 330ms cubic-bezier(0.66, 0, 0.2, 1) 0s;
+}
+
+.overlay label div span {
+  transition: all 330ms cubic-bezier(0.66, 0, 0.2, 1) 0s;
+}
+
+div .overlay-filler {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 660ms cubic-bezier(0.66, 0, 0.01, 1),visibility linear 0s;
 }
